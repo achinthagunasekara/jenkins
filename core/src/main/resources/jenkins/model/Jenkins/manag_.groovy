@@ -52,9 +52,17 @@ l.layout(title:_("Manage Jenkins"),permission:app.ADMINISTER) {
                     raw(m.description)
                 }
             }
+            
+            if (app.quietingDown) {
+                feature("system-log-out.gif","cancelRestart",_("Cancel Shutdown/Restart"))
+            } else {
+                feature("system-log-out.gif","Restart",_("Prepare for Restart")) {
+                    raw(_("Stops executing new builds, so that the system can be eventually restart safely."))
+                }
+            }
 
             if (app.quietingDown) {
-                feature("system-log-out.gif","cancelQuietDown",_("Cancel Shutdown"))
+                feature("system-log-out.gif","cancelQuietDown",_("Cancel Shutdown/Restart"))
             } else {
                 feature("system-log-out.gif","quietDown",_("Prepare for Shutdown")) {
                     raw(_("Stops executing new builds, so that the system can be eventually shut down safely."))
